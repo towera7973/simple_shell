@@ -30,7 +30,7 @@ char *if_cmd_in_path(char **firstarg)
 		dirname = malloc(sizeof(char) * (lengthdirname + 2));
 		if (dirname == NULL)
 		{
-			free_p(3, path, pwd, str), free_a(arr_dir);
+			free_p(3, path, pwd, str), free_pointerArr(arr_dir);
 			return (NULL);
 		}
 		_strcpy(dirname, arr_dir[i]), _strcat(_strcat(dirname, "/"), firstarg[0]);
@@ -39,15 +39,15 @@ char *if_cmd_in_path(char **firstarg)
 			*firstarg = _strdup(dirname);
 			if (*firstarg == NULL)
 			{
-				free_p(4, dirname, str, pwd, path), free_a(arr_dir);
+				free_p(4, dirname, str, pwd, path), free_pointerArr(arr_dir);
 				return (NULL);
 			}
-			free_p(4, dirname, str, pwd, path), free_a(arr_dir);
+			free_p(4, dirname, str, pwd, path), free_pointerArr(arr_dir);
 			return (*firstarg);
 		}
 		free_p(1, dirname), i++, j = 0;
 	}
-	free_a(arr_dir), free_p(3, str, pwd, path);
+	free_pointerArr(arr_dir), free_p(3, str, pwd, path);
 	return (NULL);
 }
 

@@ -18,7 +18,7 @@ int shell_loop(char **argv, int count)
 	av = fillarguments(buff, " \t"), count++;
 	if (av[0] == NULL)
 	{
-		free_p(1, buff), free_a(av);
+		free_p(1, buff), free_pointerArr(av);
 		return (0);
 	}
 	if (av[0][0] != '/' && av[0][0] != '.')
@@ -26,25 +26,25 @@ int shell_loop(char **argv, int count)
 		runcomm = Builtins(av, buff, count);
 		if (runcomm == 0 || runcomm == 2)
 		{
-			free_p(1, buff), free_a(av), runcomm == 0 ? (runcomm = 0) : (runcomm = 1);
+			free_p(1, buff), free_pointerArr(av), runcomm == 0 ? (runcomm = 0) : (runcomm = 1);
 			return (runcomm);
 		}
 		if (!(if_cmd_in_path(av)))
 		{
-			printerror(argv, count, av), free_p(1, buff), free_a(av);
+			printerror(argv, count, av), free_p(1, buff), free_pointerArr(av);
 			return (2);
 		}
 		else
 		{
-			processus(argv, av, buff, count), free_p(2, *av, buff), free_a(av);
+			processus(argv, av, buff, count), free_p(2, *av, buff), free_pointerArr(av);
 			return (0);
 		}
 	}
 	if (processus(argv, av, buff, count) != 0)
 	{
-		free_p(1, buff), free_a(av);
+		free_p(1, buff), free_pointerArr(av);
 		return (2);
 	}
-	free_p(1, buff), free_a(av);
+	free_p(1, buff), free_pointerArr(av);
 	return (0);
 }

@@ -19,7 +19,7 @@ char **fillarguments(char *buffer, char *separator)
 	if (arr == NULL)
 		return (NULL);
 
-	token = _strtok(buf, separator);
+	token = _strtok(buffer, separator);
 	while (token)
 	{
 		if (token[0] == '\n')

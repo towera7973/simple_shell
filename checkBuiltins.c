@@ -22,7 +22,7 @@ int Builtins(char **av, char *buffer, int count)
 			return (2);
 		else if (_strcmp("cd", av[0]) == 0 && _strlen(av[0]) == 2)
 		{
-			_cd(av, count);
+			cd(av, count);
 			return (0);
 		}
 		else if (_strcmp("help", av[0]) == 0 && _strlen(av[0]) == 4)
